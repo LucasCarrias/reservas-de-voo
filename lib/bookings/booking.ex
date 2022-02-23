@@ -3,6 +3,9 @@ defmodule Flightex.Bookings.Booking do
   @enforce_keys @keys
   defstruct @keys
 
+  def build(_complete_date, _local_origin, local_destination, _user_id) when not is_binary(local_destination) do
+    {:error, "Local destination must be a String"}
+  end
   def build(complete_date, local_origin, local_destination, user_id) do
     {:ok,
      %__MODULE__{

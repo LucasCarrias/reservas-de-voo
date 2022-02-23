@@ -32,5 +32,20 @@ defmodule Flightex.Bookings.CreateOrUpdateTest do
 
       assert response == expected_response
     end
+
+    test "when some param is invalid, returns error" do
+      params = %{
+        complete_date: ~N[2001-05-07 03:05:00],
+        local_origin: "Brasilia",
+        local_destination: 1234,
+        user_id: "e9f7d281-b9f2-467f-9b34-1b284ed58f9e",
+      }
+
+      response = CreateOrUpdate.call(params)
+
+      expected_response = {:error, "Local destination must be a String"}
+
+      assert response == expected_response
+    end
   end
 end

@@ -2,7 +2,7 @@ defmodule Flightex.Bookings.Report do
   alias Flightex.Bookings.Agent, as: BookingAgent
   alias Flightex.Bookings.Booking
 
-  def create(filename \\ "report.csv") do
+  def generate(filename \\ "report.csv") do
     booking_list = build_booking_list()
 
     File.write(filename, booking_list)
